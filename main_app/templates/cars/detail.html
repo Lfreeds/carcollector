@@ -15,6 +15,10 @@
     <p>Color: {{ car.color }}</p>
     <p>Transmission: {{car.trans}}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'cars_update' car.id %}">Edit</a>
+    <a href="{% url 'cars_delete' car.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}
