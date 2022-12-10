@@ -7,6 +7,16 @@ TYPES = (
         ('A', 'Change Filters')
     )
 
+class Accessory(models.Model):
+  name = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('accessories_detail', kwargs={'pk': self.id})
+
 class Car(models.Model):
     make = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
@@ -14,6 +24,7 @@ class Car(models.Model):
     color = models.CharField(max_length=100)
     kms = models.IntegerField(max_length=15)
     trans = models.CharField(max_length=100)
+    accessories = models.ManyToManyField(Accessory)
     
     def __str__(self):
         return self.model
@@ -35,3 +46,4 @@ class Service(models.Model):
 
     class Meta:
         ordering = ['-date']
+
